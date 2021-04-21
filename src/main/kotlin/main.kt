@@ -1,6 +1,6 @@
 import kotlin.random.Random
 
-fun main(args: Array<String>) {
+/*fun main(args: Array<String>) {
     println("Hello World!")
 
 
@@ -284,4 +284,4 @@ class Persona(var nombreCompleto : NombreCompleto){
     }
 }
 
-class NombreCompleto(var nombre: String, var apellido:String)
+*/
