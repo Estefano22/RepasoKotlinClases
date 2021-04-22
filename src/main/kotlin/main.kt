@@ -1,6 +1,16 @@
 fun main(){
-    val Mascota1 = Mascota("Bulldog", "inglés",2)
-    val Mascota2 = Mascota("Border ","Collie",1)
+    val mascota1 = Mascota("Bulldog", "inglés",2)
+    val mascota2 = Mascota("Border ","Collie",1)
+
+    //opcion 1
+    //val listaMacotas = mutableListOf(Mascota1, Mascota2)
+
+
+    //opcion2
+    val listaMacotas = mutableListOf<Mascota>()
+    listaMacotas.add(mascota1)
+    listaMacotas.add(mascota2)
+
 
 
     val nombreCompleto1 = NombreCompleto("Estefano","Sandulescu")
@@ -8,23 +18,23 @@ fun main(){
 
 
 
-    val Persona1 = Persona(nombreCompleto1, Mascota1, Mascota2)
-    val Persona2 = Persona(nombreCompleto2, Mascota1=null, Mascota2=null)
+    val Persona1 = Persona(nombreCompleto1, listaMacotas)
+    val Persona2 = Persona(nombreCompleto2, null)
 
     Persona1.edad=45
     Persona2.edad=36
 
-    Mascota1.edadMascota =2
-    Mascota2.edadMascota =1
+    mascota1.edadMascota =2
+    mascota2.edadMascota =1
 
     Persona1.setDni("12345678B")
     Persona2.setDni("23459765T")
 
-    Persona1.EspecificarMascota()
-    Persona2.EspecificarMascota()
+    Persona1.escribirMascotas()
+    Persona2.escribirMascotas()
 }
 
-class Persona(var nombreCompleto : NombreCompleto, var Mascota1: Mascota? = null, var Mascota2: Mascota? = null) {
+class Persona(var nombreCompleto : NombreCompleto, var listaMascotas : MutableList<Mascota>?) {
     // edad es publica, no pongo restricciones a que lo cambien
     var edad = 18
     private var DNI: String? = null
@@ -38,21 +48,20 @@ class Persona(var nombreCompleto : NombreCompleto, var Mascota1: Mascota? = null
     }
 
 
-    fun EspecificarMascota(){
+    fun escribirMascotas() {
 
-        print("Soy ${nombreCompleto.nombre} ${nombreCompleto.apellido} con DNI-$DNI. ")
+        print("Soy ${nombreCompleto.nombre} ${nombreCompleto.apellido} con DNI-$DNI y $edad años. ")
 
-        Mascota1?.let {
-            print("Soy dueño de: ${it.nombreMascota} que tienen ${it.edadMascota} años ")
-        } ?: run {
-            print(" y todavia no tengo mascota :(")
+        listaMascotas?.forEach { mascota ->
+            print("${mascota.nombreMascota} ")
         }
-        println("")
-        Mascota2?.let {
-            print("y tambien de ${it.nombreMascota} que tiene ${it.edadMascota} año")
-        }
-        println("")
+        if(listaMascotas.isNullOrEmpty()) println("No tengo mascota")
+
+    println("")
+
+
     }
+
 }
 
 
